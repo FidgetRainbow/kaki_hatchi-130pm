@@ -1,0 +1,36 @@
+{
+    "name": "Kaki_Hatchi 1.30pm",
+    "description": "",
+    "dependencies": {
+        "device": "*",
+        "Timers": "github:microsoft/arcade-timers#v1.1.0",
+        "Sprite Grid": "github:microsoft/arcade-grid#v1.3.0",
+        "arcade-story": "github:microsoft/arcade-storytelling#v1.0.1",
+        "pxt-status-bar": "github:jwunderl/pxt-status-bar#v0.4.1"
+    },
+    "files": [
+        "main.blocks",
+        "main.ts",
+        "README.md",
+        "assets.json",
+        "tilemap.g.jres",
+        "tilemap.g.ts",
+        "images.g.jres",
+        "images.g.ts"
+    ],
+    "testFiles": [
+        "test.ts"
+    ],
+    "targetVersions": {
+        "branch": "v1.4.30",
+        "tag": "v1.4.30",
+        "commits": "https://github.com/microsoft/pxt-arcade/commits/03118f45f1c75321e0d383d4079cf1bca1e0bdc0",
+        "target": "1.4.35",
+        "pxt": "6.12.11",
+        "targetId": "arcade"
+    },
+    "supportedTargets": [
+        "arcade"
+    ],
+    "preferredEditor": "blocksprj"
+}
