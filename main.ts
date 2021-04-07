@@ -5,36 +5,24 @@ namespace SpriteKind {
     export const Spear = SpriteKind.create()
 }
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
-    DoubleJump += 1
-    if (DoubleJump < 3) {
-        Kuro.vy = -200
+    if (story.isMenuOpen() == false) {
+        DoubleJump += 1
+        if (DoubleJump < 3) {
+            Kuro.vy = -200
+            music.jumpUp.play()
+        } else {
+            music.jumpDown.play()
+        }
+        animation.runImageAnimation(
+        Kuro,
+        assets.animation`Temporary asset0u65e68u75445eu`,
+        200,
+        true
+        )
     }
-    animation.runImageAnimation(
-    Kuro,
-    assets.animation`Temporary asset0u65e68u75445eu`,
-    200,
-    true
-    )
 })
 function Sprite2 () {
-    Kuro = sprites.create(img`
-        . . . . f f f f f f . . . . . . 
-        . . . f 7 7 7 7 7 7 f . . . . . 
-        . . f 7 7 7 7 7 7 7 7 f . . . . 
-        . . f 7 7 7 7 7 7 7 7 f . . . . 
-        . . f 7 7 7 7 7 7 7 7 f . . . . 
-        . . f 7 7 7 7 7 7 7 7 f . . . . 
-        . . f 7 7 7 7 7 7 7 7 f . . . . 
-        . . f 7 7 7 7 7 7 7 7 f . . . . 
-        . . . f 7 7 7 7 7 7 f . . . . . 
-        . . f 7 7 7 7 7 7 7 7 f . . . . 
-        . f 7 7 7 7 7 7 7 7 7 7 f . . . 
-        . f 7 7 7 7 7 7 7 7 7 7 f . . . 
-        . f 7 f 7 7 7 7 7 7 f 7 f . . . 
-        . . f 7 7 7 7 7 7 7 7 f . . . . 
-        . . . f 7 7 7 f 7 7 f . . . . . 
-        . . . f 7 7 7 7 f 7 7 f . . . . 
-        `, SpriteKind.Player)
+    Kuro = sprites.create(assets.image`zoe`, SpriteKind.Player)
     for (let value of tiles.getTilesByType(assets.tile`myTile2`)) {
         tiles.setTileAt(value, assets.tile`myTile11`)
     }
@@ -171,7 +159,7 @@ function Level_1 () {
             . f a a a a a a a a a a a a f . 
             . . f f a a a a a a a a a f . . 
             . . . . 2 2 2 f f 2 2 2 f . . . 
-            `, SpriteKind.Food)
+            `, SpriteKind.Enemy)
         tiles.placeOnTile(Tengu, value15)
         tiles.setTileAt(value15, assets.tile`transparency16`)
         animation.runImageAnimation(
@@ -230,7 +218,7 @@ function Start () {
     game.setDialogFrame(assets.image`lalalalalalalalalal`)
     game.setDialogTextColor(8)
     game.showLongText("The most wanted superhero in the beach forests of fawkes had her powers involutarily thrust upon her. she must learn to control it to survive.", DialogLayout.Full)
-    scene.setBackgroundImage(assets.image`lololo`)
+    scene.setBackgroundImage(assets.image`lololo ytdufi`)
     pause(2000)
     scene.setBackgroundImage(img`
         ................................................................................................................................................................
@@ -586,10 +574,12 @@ sprites.onOverlap(SpriteKind.Spear, SpriteKind.Player, function (sprite, otherSp
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     if (Kuro.y < otherSprite.y) {
+        music.playMelody("F A G B A C5 B C5 ", 1200)
         otherSprite.destroy(effects.fire, 200)
         Kuro.vy = -100
         info.changeScoreBy(5)
     } else {
+        music.playMelody("C5 B C5 A B G A F ", 1200)
         otherSprite.destroy(effects.fire, 200)
         info.changeLifeBy(-1)
     }
@@ -614,6 +604,16 @@ let Kuro: Sprite = null
 let GameOn = false
 let DoubleJump = 0
 let Level = 0
+let list = [
+262,
+294,
+330,
+349,
+392,
+440,
+494,
+523
+]
 Level = 0
 let DamageRate = 1
 DoubleJump = 0
@@ -675,5 +675,5 @@ game.onUpdateInterval(1000, function () {
     }
 })
 forever(function () {
-	
+    music.playTone(list[randint(0, 7)], music.beat(BeatFraction.Half))
 })
