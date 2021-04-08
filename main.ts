@@ -21,6 +21,11 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
         )
     }
 })
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Death, function (sprite, otherSprite) {
+    tiles.placeOnRandomTile(Kuro, assets.tile`myTile11`)
+    scene.cameraShake(4, 500)
+    info.changeLifeBy(-1)
+})
 function Sprite2 () {
     Kuro = sprites.create(assets.image`zoe`, SpriteKind.Player)
     for (let value of tiles.getTilesByType(assets.tile`myTile2`)) {
@@ -164,24 +169,7 @@ function Level_1 () {
         tiles.setTileAt(value15, assets.tile`transparency16`)
         animation.runImageAnimation(
         Tengu,
-        [img`
-            . . . . . . . . . . . . . . . . 
-            . . . 1 1 . f f f f f . . . . 1 
-            . . . 1 1 f c c c c c f . . 1 1 
-            . . . 1 f c c c c c c c f 1 1 1 
-            . f f f 2 2 2 2 2 2 c c c f 1 1 
-            f 2 2 2 2 f 2 2 f 2 2 c c c f 1 
-            . f f f 2 2 2 2 2 2 2 c c c c f 
-            . . . f 2 2 2 2 2 2 2 c c c c f 
-            . . f 8 b 2 2 2 2 b b c c c f . 
-            . f 8 8 8 b 2 b b 8 8 b b f 8 f 
-            . 2 2 8 8 8 b 8 2 2 8 8 8 8 8 f 
-            . 2 2 8 8 8 8 8 2 2 8 8 8 8 8 f 
-            . . f 8 8 8 8 8 8 8 8 8 8 8 8 f 
-            . f a a a a a a a a a a a a f . 
-            . . f f a a a a a a a a a f . . 
-            . . . . 2 2 2 f f 2 2 2 f . . . 
-            `],
+        assets.animation`xydtgdu6udyjuw456`,
         200,
         true
         )
@@ -625,6 +613,7 @@ Level = 0
 let DamageRate = 1
 DoubleJump = 0
 GameOn = false
+info.setLife(3)
 Start()
 Level_1()
 Sprite2()

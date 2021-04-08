@@ -1086,24 +1086,6 @@ ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
 . . . 5 5 4 5 5 5 5 5 5 . . . 
 . . . . 5 5 5 5 5 5 5 . . . . 
 `];
-            case "anim9":return [img`
-. . . . . . . . . . . . . . . . 
-. . . 1 1 . f f f f f . . . . 1 
-. . . 1 1 f c c c c c f . . 1 1 
-. . . 1 f c c c c c c c f 1 1 1 
-. f f f 2 2 2 2 2 2 c c c f 1 1 
-f 2 2 2 2 f 2 2 f 2 2 c c c f 1 
-. f f f 2 2 2 2 2 2 2 c c c c f 
-. . . f 2 2 2 2 2 2 2 c c c c f 
-. . f 8 b 2 2 2 2 b b c c c f . 
-. f 8 8 8 b 2 b b 8 8 b b f 8 f 
-. 2 2 8 8 8 b 8 2 2 8 8 8 8 8 f 
-. 2 2 8 8 8 8 8 2 2 8 8 8 8 8 f 
-. . f 8 8 8 8 8 8 8 8 8 8 8 8 f 
-. f a a a a a a a a a a a a f . 
-. . f f a a a a a a a a a f . . 
-. . . . 2 2 2 f f 2 2 2 f . . . 
-`];
             case "Temporary asset":
             case "anim2":return [img`
 . . . . f f f f f f . . . . . . 
@@ -1211,6 +1193,25 @@ f 2 2 2 2 f 2 2 f 2 2 c c c f 1
 . . f c b 3 3 3 3 3 3 f f . . . 
 . . . f f f f 3 f c 3 3 f . . . 
 . . . . . . . f b b c 3 f . . . 
+`];
+            case "xydtgdu6udyjuw456":
+            case "anim9":return [img`
+. . . . . . . . . . . . . . . . 
+. . . 1 1 . f f f f f . . . . 1 
+. . . 1 1 f 3 3 3 3 3 f . . 1 1 
+. . . 1 f 3 3 3 3 3 3 3 f 1 1 1 
+. f f f 3 3 3 3 3 3 3 3 3 f 1 1 
+f 3 3 3 3 f 1 3 f 1 3 3 3 3 f 1 
+. f f f 3 f f 3 f f 3 3 3 3 3 f 
+. . . f 3 3 3 3 3 3 3 3 3 3 3 f 
+. . f 2 2 3 2 2 3 b b 3 3 3 f . 
+. f 8 2 2 5 2 2 b 8 8 b b f 8 f 
+. 3 3 8 2 8 2 8 3 3 8 8 8 8 8 f 
+. 3 3 2 8 8 8 2 3 3 8 8 8 8 8 f 
+. . f 8 8 8 8 8 8 8 8 8 8 8 8 f 
+. f a a a a a a a a a a a a f . 
+. . f f a a a a a a a a a f . . 
+. . . . 3 3 3 f f 3 3 3 f . . . 
 `];
         }
         return null;
