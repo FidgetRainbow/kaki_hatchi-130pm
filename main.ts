@@ -215,12 +215,16 @@ controller.anyButton.onEvent(ControllerButtonEvent.Pressed, function () {
     }
 })
 function Start () {
+    game.setDialogFrame(assets.image`lalalalalalalalalal`)
+    scene.setBackgroundImage(assets.image`myImage1`)
+    game.setDialogTextColor(1)
+    game.showLongText("            A CQ production", DialogLayout.Full)
+    pause(100)
     scene.setBackgroundImage(assets.image`hjgfcfyhjkcygjxgfjfhg`)
     game.setDialogFrame(assets.image`lalalalalalalalalal`)
     game.setDialogTextColor(8)
     game.showLongText("The most wanted superhero in the beach forests of fawkes had her powers involutarily thrust upon her. she must learn to control it to survive.", DialogLayout.Full)
     scene.setBackgroundImage(assets.image`lololo ytdufi`)
-    game.setDialogFrame(assets.image`lalalalalalalalalal`)
     game.showLongText("Pink riffle: legend in fawkes", DialogLayout.Top)
     pause(100)
     scene.setBackgroundImage(img`
