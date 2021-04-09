@@ -6,7 +6,9 @@
         "Timers": "github:microsoft/arcade-timers#v1.1.0",
         "Sprite Grid": "github:microsoft/arcade-grid#v1.3.0",
         "arcade-story": "github:microsoft/arcade-storytelling#v1.0.1",
-        "pxt-status-bar": "github:jwunderl/pxt-status-bar#v0.4.1"
+        "pxt-status-bar": "github:jwunderl/pxt-status-bar#v0.4.1",
+        "palette": "*",
+        "Color Fading": "github:jwunderl/pxt-color#v0.2.1"
     },
     "files": [
         "main.blocks",

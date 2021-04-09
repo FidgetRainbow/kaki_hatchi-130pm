@@ -24,7 +24,18 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Death, function (sprite, otherSprite) {
     tiles.placeOnRandomTile(Kuro, assets.tile`myTile11`)
     scene.cameraShake(4, 500)
+    color.setPalette(
+    color.Sweet
+    )
     info.changeLifeBy(-1)
+    pause(500)
+    color.setPalette(
+    color.Adafruit
+    )
+    pause(500)
+    color.setPalette(
+    color.originalPalette
+    )
 })
 function Sprite2 () {
     Kuro = sprites.create(assets.image`zoe`, SpriteKind.Player)
@@ -80,15 +91,19 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     }
 })
 function Riddle () {
-    story.printCharacterText("Tengu says", "Tengu")
-    story.printCharacterText("Tengu asks", "Tengu")
-    story.showPlayerChoices("Option 1", "Option 2", "Option 3")
-    if (story.checkLastAnswer("Option 1")) {
-        story.printCharacterText("Right", "Tengu")
-    } else if (story.checkLastAnswer("Option 2")) {
-        story.printCharacterText("Wrong", "Tengu")
-    } else if (story.checkLastAnswer("Option 3")) {
-        story.printCharacterText("Very wrong", "Tengu")
+    story.printCharacterText("done well, you have! but answer this, you must. a test, this is!", "yoda")
+    story.printCharacterText("what has 4 letters, sometimes has 9 letters. always has 6 letters but never has 5 letters", "yoda")
+    story.showPlayerChoices("mailbox", "the words in the riddle", "the alphabet")
+    if (story.checkLastAnswer("the words in the riddle")) {
+        story.printCharacterText("Right", "yoda")
+        story.printCharacterText("heal you I will for correct answer you gave.", "yoda")
+    } else if (story.checkLastAnswer("the alphabet")) {
+        story.printCharacterText("Wrong", "yoda")
+        info.changeScoreBy(-5)
+    } else if (story.checkLastAnswer("mailbox")) {
+        story.printCharacterText("Very wrong", "yoda")
+        effects.clouds.startScreenEffect(500)
+        DamageRate = 1.5
     }
     Kuro.destroy()
     Level_2()
@@ -167,6 +182,8 @@ function Level_1 () {
             `, SpriteKind.Enemy)
         tiles.placeOnTile(Tengu, value15)
         tiles.setTileAt(value15, assets.tile`transparency16`)
+        Tengu.vx = -30
+        Tengu.setBounceOnWall(true)
         animation.runImageAnimation(
         Tengu,
         assets.animation`xydtgdu6udyjuw456`,
@@ -194,7 +211,13 @@ function Level_1 () {
             8 8 8 8 8 1 9 8 8 8 8 8 8 8 8 8 
             `, SpriteKind.Death)
         tiles.placeOnTile(Waves, value16)
-        tiles.setTileAt(value16, assets.tile`transparency16`)
+        tiles.setTileAt(value16, assets.tile`myTile0`)
+        animation.runMovementAnimation(
+        Waves,
+        animation.animationPresets(animation.waveRight),
+        2000,
+        true
+        )
     }
 }
 controller.anyButton.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -578,6 +601,28 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
         otherSprite.destroy(effects.fire, 200)
         info.changeLifeBy(-1)
     }
+    if (info.life() == 0) {
+        scene.setBackgroundImage(img`
+            8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 
+            8 8 8 1 1 8 f f f f f 8 8 8 8 1 
+            8 8 8 1 1 f 3 3 3 3 3 f 8 8 1 1 
+            8 8 8 1 f 3 e 3 e 3 3 3 f 1 1 1 
+            8 f f f 3 3 3 e 3 3 3 3 3 f 1 1 
+            f 3 3 3 3 2 1 3 2 1 3 3 3 3 f 1 
+            8 f f f 3 2 2 3 2 2 3 3 3 3 3 f 
+            8 8 8 f 1 1 1 1 3 3 3 3 3 3 3 f 
+            8 8 f 7 7 1 7 7 3 b b 3 3 3 f 8 
+            8 f 2 7 7 4 7 7 b 2 2 b b f 2 f 
+            8 3 3 2 7 2 7 2 3 3 2 2 2 2 2 f 
+            8 3 3 7 2 2 2 7 3 3 2 2 2 2 2 f 
+            8 8 f 2 2 2 2 2 2 2 2 2 2 2 2 f 
+            8 f a a a a a a a a a a a a f 8 
+            8 8 f f a a a a a a a a a f 8 8 
+            8 8 8 8 3 3 3 f f 3 3 3 f 8 8 8 
+            `)
+        pause(100)
+        game.over(false)
+    }
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Boss, function (sprite, otherSprite) {
     Kuro.vx = -200
@@ -598,6 +643,7 @@ let Benkey: Sprite = null
 let Kuro: Sprite = null
 let GameOn = false
 let DoubleJump = 0
+let DamageRate = 0
 let Level = 0
 let list = [
 262,
@@ -610,7 +656,7 @@ let list = [
 523
 ]
 Level = 0
-let DamageRate = 1
+DamageRate = 1
 DoubleJump = 0
 GameOn = false
 info.setLife(3)
